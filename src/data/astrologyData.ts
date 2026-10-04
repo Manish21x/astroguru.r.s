@@ -1,6 +1,77 @@
 import { ServiceItem, ZodiacSign, NakshatraItem, TestimonialItem, BlogPostItem } from '../types';
+import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
 import blogImageB1 from '../assets/images/regenerated_image_1787574835628.png';
 import blogImageB2 from '../assets/images/regenerated_image_1787574845183.png';
+
+export interface GalleryPhotoItem {
+  id: string;
+  title: string;
+  ceremony: string;
+  category: string;
+  imageUrl: string;
+  caption?: string;
+  date?: string;
+  badge?: string;
+}
+
+/**
+ * Permanent Site Images:
+ * These images are bundled into the project build (dist/) and will ALWAYS appear
+ * when the website is hosted online (Vercel, Netlify, Cloud Run, GitHub Pages, etc.)
+ * for ALL visitors across all devices.
+ */
+export const DEFAULT_SITE_IMAGES = {
+  heroPortrait: defaultAstrologerImage,
+  prideAwardPhoto: defaultAstrologerImage,
+  jaipurAwardPhoto: defaultAstrologerImage,
+  // If you host photos on ImgBB, PostImages, Cloudinary or S3, paste the public URL below:
+  permanentHeroUrl: '',
+  permanentPrideUrl: '',
+  permanentJaipurUrl: '',
+};
+
+export const DEFAULT_GALLERY_PHOTOS: GalleryPhotoItem[] = [
+  {
+    id: "gallery-jaipur-green-award",
+    title: "Jaipur Green Developers Award Ceremony",
+    ceremony: "Annual National Excellence Convention, Jaipur",
+    category: "Golden Trophy Felicitation",
+    imageUrl: defaultAstrologerImage,
+    caption: "Astro Love Guru Pt. Rohit Sharma receiving the prestigious golden trophy at Jaipur Green Developers National Excellence Award Ceremony.",
+    badge: "Golden Trophy",
+    date: "Annual Convention"
+  },
+  {
+    id: "gallery-pride-national-award",
+    title: "Pride National Excellence Award Gala",
+    ceremony: "Pride Awards Season 7 • Radisson Blu & Insights Success",
+    category: "National Stage Felicitation",
+    imageUrl: defaultAstrologerImage,
+    caption: "Felicitated on the national stage under the Tricolour backdrop for 15+ years of ethical Vedic astrology and relationship counseling.",
+    badge: "National Icon",
+    date: "Season 7 Gala"
+  },
+  {
+    id: "gallery-vedic-session-pune",
+    title: "Vedic Jyotish & Planetary Transit Seminar",
+    ceremony: "Astro Love Guru Sansthan, Pune",
+    category: "Vedic Guidance",
+    imageUrl: blogImageB1,
+    caption: "Spiritual discourse on Vimshottari Mahadasha transitions and practical planetary remedies for marital peace and career growth.",
+    badge: "Pune Sansthan",
+    date: "Spiritual Discourse"
+  },
+  {
+    id: "gallery-kundli-compatibility",
+    title: "Sacred Ashtakoot Kundli Milan Session",
+    ceremony: "Vedic Relationship Counseling Forum",
+    category: "Relationship Astrology",
+    imageUrl: blogImageB2,
+    caption: "Detailed 36-Guna compatibility, Navamsha chart scrutiny, and Manglik Dosha remedial consultation.",
+    badge: "Kundli Milan",
+    date: "Specialist Session"
+  }
+];
 
 export interface AwardItem {
   id: string;

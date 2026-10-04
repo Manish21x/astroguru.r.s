@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Phone, MessageCircle, ArrowRight, ShieldCheck, Star, Sparkles, CheckCircle2, Award, Heart, Briefcase, Users, Trophy, Medal, Camera, Upload, Instagram } from 'lucide-react';
 import { ASTROLOGER_PROFILE } from '../data/astrologyData';
 import { useAstrologerPhoto } from '../utils/photoStorage';
+import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
 
 interface HeroProps {
   onOpenWhatsApp: (topic?: string) => void;
@@ -9,7 +10,32 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenWhatsApp, onExploreServices }) => {
-  const { customPhoto, setIsUploadModalOpen } = useAstrologerPhoto();
+  const { customPhoto, setIsUploadModalOpen, uploadPhoto } = useAstrologerPhoto();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const success = await uploadPhoto(e.target.files[0], 'general');
+      if (success) {
+        setUploadSuccess(true);
+        setTimeout(() => setUploadSuccess(false), 3000);
+      }
+    }
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const success = await uploadPhoto(e.dataTransfer.files[0], 'general');
+      if (success) {
+        setUploadSuccess(true);
+        setTimeout(() => setUploadSuccess(false), 3000);
+      }
+    }
+  };
 
   return (
     <section id="hero" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-6 pb-16 lg:py-20 bg-gradient-to-b from-[#0B0914] via-[#140D26] to-[#0B0914]">
@@ -191,27 +217,66 @@ export const Hero: React.FC<HeroProps> = ({ onOpenWhatsApp, onExploreServices })
                 <div className="relative h-[440px] sm:h-[480px] w-full overflow-hidden flex items-end justify-center bg-[#130E26]">
                   
                   {customPhoto ? (
-                    <div className="w-full h-full relative overflow-hidden flex items-center justify-center bg-[#090714]">
+                    <div 
+                      onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDragOver(true);
+                      }}
+                      onDragLeave={() => setIsDragOver(false)}
+                      onDrop={handleDrop}
+                      onClick={() => fileInputRef.current?.click()}
+                      className={`w-full h-full relative overflow-hidden flex items-center justify-center bg-[#090714] group cursor-pointer transition-all duration-300 ${
+                        isDragOver ? 'ring-4 ring-[#D4AF37] scale-[1.01]' : ''
+                      }`}
+                      title="Click or drag & drop to update photo"
+                    >
                       <img
                         src={customPhoto}
                         alt={`${ASTROLOGER_PROFILE.name} - Vedic Astrologer`}
-                        className="w-full h-full object-cover object-top filter brightness-100 contrast-105"
+                        className="w-full h-full object-cover object-top filter brightness-100 contrast-[1.04] transition-transform duration-500 group-hover:scale-105"
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          if (e.currentTarget.src !== defaultAstrologerImage) {
+                            e.currentTarget.src = defaultAstrologerImage;
+                          }
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0B0914] via-[#0B0914]/20 to-transparent pointer-events-none" />
                       
+                      {/* Hover Upload Overlay */}
+                      <div className="absolute inset-0 bg-[#0B0914]/65 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center z-20">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#FDE08B] to-[#D4AF37] text-[#0B0914] flex items-center justify-center mb-2 shadow-xl transform group-hover:scale-110 transition-transform">
+                          <Upload className="w-5 h-5 text-[#0B0914]" />
+                        </div>
+                        <span className="text-xs font-bold text-[#F3EFE6] bg-[#0E0A1E]/90 px-3.5 py-1.5 rounded-full border border-[#D4AF37]/60 shadow-lg">
+                          Click or Drag to Upload Photo
+                        </span>
+                        <span className="text-[10px] text-[#FFDF78] mt-1 font-medium">Supports JPG, PNG, WEBP</span>
+                      </div>
+
+                      {/* Upload Success Banner */}
+                      {uploadSuccess && (
+                        <div className="absolute inset-0 bg-[#06331E]/90 backdrop-blur-sm flex flex-col items-center justify-center z-30 animate-in fade-in duration-300">
+                          <div className="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-2 shadow-lg">
+                            <CheckCircle2 className="w-7 h-7" />
+                          </div>
+                          <span className="text-sm font-bold text-white">Photo Updated Successfully!</span>
+                        </div>
+                      )}
+
                       {/* Top Action Overlay */}
-                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10" onClick={(e) => e.stopPropagation()}>
                         <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-950/90 px-2.5 py-1 rounded-full border border-emerald-500/40 flex items-center gap-1.5 backdrop-blur-sm">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
                           Online Consultations
                         </span>
                         <button
-                          onClick={() => setIsUploadModalOpen(true)}
-                          className="p-1.5 rounded-lg bg-[#0B0914]/80 hover:bg-[#D4AF37] text-[#D4AF37] hover:text-[#0B0914] border border-[#D4AF37]/50 transition-colors shadow cursor-pointer"
-                          title="Change or upload new photo"
+                          onClick={() => fileInputRef.current?.click()}
+                          className="px-2.5 py-1.5 rounded-lg bg-[#0B0914]/85 hover:bg-[#D4AF37] text-[#D4AF37] hover:text-[#0B0914] border border-[#D4AF37]/50 transition-colors shadow cursor-pointer flex items-center gap-1.5 text-xs font-bold"
+                          title="Upload New Photo"
                         >
-                          <Camera className="w-4 h-4" />
+                          <Camera className="w-3.5 h-3.5" />
+                          <span>Update Photo</span>
                         </button>
                       </div>
 
@@ -223,7 +288,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenWhatsApp, onExploreServices })
                               {ASTROLOGER_PROFILE.name}
                               <Sparkles className="w-3.5 h-3.5 text-[#D4AF37]" />
                             </h3>
-                            <p className="text-[11px] text-[#D4AF37] font-medium">Pride National Awardee • Jyotish Ratna</p>
+                            <p className="text-[11px] text-[#D4AF37] font-medium">Jaipur Green Developers Awardee • Jyotish Ratna</p>
                           </div>
                           <a
                             href="#awards"
@@ -237,7 +302,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenWhatsApp, onExploreServices })
                     </div>
                   ) : (
                     /* Visual Portrait Graphic with Photo Upload CTA */
-                    <div className="w-full h-full relative flex flex-col justify-between p-6 bg-gradient-to-b from-[#1E143B] via-[#140D2B] to-[#0B0817]">
+                    <div 
+                      onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDragOver(true);
+                      }}
+                      onDragLeave={() => setIsDragOver(false)}
+                      onDrop={handleDrop}
+                      onClick={() => fileInputRef.current?.click()}
+                      className={`w-full h-full relative flex flex-col justify-between p-6 bg-gradient-to-b from-[#1E143B] via-[#140D2B] to-[#0B0817] cursor-pointer transition-all ${
+                        isDragOver ? 'ring-4 ring-[#D4AF37]' : ''
+                      }`}
+                    >
                       
                       {/* Top Cosmic Holy Emblem Header */}
                       <div className="flex items-center justify-between z-10">
@@ -246,11 +322,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenWhatsApp, onExploreServices })
                           <span className="text-[11px] font-semibold text-[#FFDF78]">Astro Guru</span>
                         </div>
                         <button
-                          onClick={() => setIsUploadModalOpen(true)}
-                          className="text-[10px] text-[#0B0914] font-bold bg-gradient-to-r from-[#FDE08B] to-[#D4AF37] hover:from-[#FFF1B8] hover:to-[#C69C20] px-2.5 py-1 rounded-full border border-[#D4AF37] shadow flex items-center gap-1 cursor-pointer transition-all"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            fileInputRef.current?.click();
+                          }}
+                          className="text-[10px] text-[#0B0914] font-bold bg-gradient-to-r from-[#FDE08B] to-[#D4AF37] hover:from-[#FFF1B8] hover:to-[#C69C20] px-3 py-1.5 rounded-full border border-[#D4AF37] shadow flex items-center gap-1 cursor-pointer transition-all"
                         >
-                          <Upload className="w-3 h-3" />
-                          <span>Attach Photo</span>
+                          <Upload className="w-3.5 h-3.5" />
+                          <span>Upload Photo</span>
                         </button>
                       </div>
 
@@ -280,7 +359,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenWhatsApp, onExploreServices })
                             Jaipur Green Developers Awardee
                           </span>
                           <p className="text-xs text-[#C5B79F] max-w-xs">
-                            Revered for profound accuracy in Janam Kundli, Marriage Compatibility & Career Timing
+                            Click or drag photo here to upload
                           </p>
                         </div>
                       </div>
@@ -312,6 +391,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenWhatsApp, onExploreServices })
                   )}
 
                 </div>
+
+                {/* Hidden File Input for Direct Astrologer Photo Upload */}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleFileSelect}
+                />
 
                 {/* Floating Badge 1: Experience & Gold Medal */}
                 <div className="absolute -top-3 -left-3 sm:-left-5 bg-[#17102D] border border-[#D4AF37]/50 rounded-xl p-3 shadow-xl backdrop-blur-md flex items-center space-x-2.5 animate-bounce-subtle">

@@ -2,6 +2,7 @@ import React from 'react';
 import { Trophy, Sparkles, Award, Camera, Upload, CheckCircle2, Star, Maximize2, ExternalLink } from 'lucide-react';
 import { useAstrologerPhoto } from '../utils/photoStorage';
 import { ASTROLOGER_PROFILE } from '../data/astrologyData';
+import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
 
 interface CeremonyPhotoCardProps {
   variant?: 'hero' | 'award-section' | 'about';
@@ -65,6 +66,11 @@ export const CeremonyPhotoCard: React.FC<CeremonyPhotoCardProps> = ({
             alt={`${ASTROLOGER_PROFILE.name} - ${awardType === 'pride' ? 'Pride National Award' : 'Jaipur Convention Award'}`}
             className="w-full h-full object-cover object-top filter brightness-100 contrast-105 group-hover:scale-103 transition-transform duration-500"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              if (e.currentTarget.src !== defaultAstrologerImage) {
+                e.currentTarget.src = defaultAstrologerImage;
+              }
+            }}
           />
 
           {/* Elegant Top & Bottom Overlays */}

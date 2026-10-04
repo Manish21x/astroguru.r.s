@@ -3,6 +3,7 @@ import { Award, Trophy, Star, Sparkles, ShieldCheck, CheckCircle2, Medal, Extern
 import { HONORS_AND_AWARDS, ASTROLOGER_PROFILE, AwardItem } from '../data/astrologyData';
 import { CeremonyPhotoCard } from './CeremonyPhotoCard';
 import { useAstrologerPhoto } from '../utils/photoStorage';
+import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
 
 interface AwardsSectionProps {
   onOpenWhatsApp: (topic?: string) => void;
@@ -10,7 +11,7 @@ interface AwardsSectionProps {
 
 export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) => {
   const [selectedAward, setSelectedAward] = useState<AwardItem | null>(null);
-  const { setIsUploadModalOpen, lightboxPhoto, setLightboxPhoto } = useAstrologerPhoto();
+  const { setIsUploadModalOpen, lightboxPhoto, setLightboxPhoto, galleryPhotos } = useAstrologerPhoto();
 
 
   return (
@@ -147,6 +148,70 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
           </div>
 
         </div>
+
+        {/* Ceremony & Stage Felicitation Photo Gallery */}
+        {galleryPhotos && galleryPhotos.length > 0 && (
+          <div className="mb-16">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
+              <div>
+                <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#F3EFE6] flex items-center gap-2">
+                  <span>Honors & Stage Felicitation Gallery</span>
+                  <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+                </h3>
+                <p className="text-xs text-[#C5B79F] mt-0.5">
+                  Authentic ceremony photographs, golden trophy felicitation, and spiritual sessions.
+                </p>
+              </div>
+              <button
+                onClick={() => setIsUploadModalOpen(true)}
+                className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#D4AF37]/15 hover:bg-[#D4AF37]/25 text-[#FFDF78] border border-[#D4AF37]/40 flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Camera className="w-3.5 h-3.5 text-[#D4AF37]" />
+                <span>Add / Manage Ceremony Photos</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {galleryPhotos.map((photo) => (
+                <div
+                  key={photo.id}
+                  onClick={() => setLightboxPhoto(photo)}
+                  className="group relative rounded-2xl overflow-hidden bg-[#120D26] border border-[#D4AF37]/30 hover:border-[#D4AF37] cursor-pointer transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex flex-col"
+                >
+                  <div className="aspect-[4/3] w-full overflow-hidden bg-black/40 relative">
+                    <img
+                      src={photo.imageUrl}
+                      alt={photo.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        if (e.currentTarget.src !== defaultAstrologerImage) {
+                          e.currentTarget.src = defaultAstrologerImage;
+                        }
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0914] via-transparent to-transparent pointer-events-none" />
+                  </div>
+                  <div className="p-3 bg-[#0B0914] border-t border-[#D4AF37]/20 flex-1 flex flex-col justify-between">
+                    <div>
+                      {photo.badge && (
+                        <span className="text-[9px] font-bold text-[#FFDF78] bg-[#D4AF37]/20 px-1.5 py-0.5 rounded border border-[#D4AF37]/30 mb-1 inline-block">
+                          {photo.badge}
+                        </span>
+                      )}
+                      <h4 className="text-xs font-bold text-[#F3EFE6] truncate group-hover:text-[#D4AF37] transition-colors">
+                        {photo.title}
+                      </h4>
+                      <p className="text-[10px] text-[#A89C86] truncate mt-0.5">
+                        {photo.ceremony}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* 4 Detailed Award Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

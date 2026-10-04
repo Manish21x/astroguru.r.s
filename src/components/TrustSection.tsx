@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Award, CheckCircle, Shield, Sparkles, BookOpen, Star, ArrowRight, X, HeartHandshake, Compass, GraduationCap, Trophy, Medal, Camera, Upload, Instagram, MessageCircle, Phone } from 'lucide-react';
 import { ASTROLOGER_PROFILE } from '../data/astrologyData';
 import { useAstrologerPhoto } from '../utils/photoStorage';
+import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
 
 interface TrustSectionProps {
   onOpenWhatsApp: (topic?: string) => void;
@@ -152,6 +153,11 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ onOpenWhatsApp }) =>
                       alt={ASTROLOGER_PROFILE.name}
                       className="w-full h-full object-cover object-top filter brightness-100 contrast-[1.04] transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        if (e.currentTarget.src !== defaultAstrologerImage) {
+                          e.currentTarget.src = defaultAstrologerImage;
+                        }
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0B0914] via-transparent to-[#0B0914]/40 pointer-events-none" />
                     
