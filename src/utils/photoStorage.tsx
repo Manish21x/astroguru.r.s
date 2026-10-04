@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
+import astrologerPortrait from '../assets/images/astrologer_portrait.png';
+import jaipurAwardPhoto from '../assets/images/regenerated_image_1791117433897.jpg';
 import { 
   DEFAULT_SITE_IMAGES, 
   DEFAULT_GALLERY_PHOTOS, 
@@ -20,6 +21,7 @@ interface AstrologerPhotoContextType {
   setPhotoUrl: (url: string, targetSlot?: 'general' | 'pride' | 'jaipur') => boolean;
   uploadPhoto: (file: File, targetSlot?: 'general' | 'pride' | 'jaipur') => Promise<boolean>;
   addGalleryPhoto: (photo: Omit<GalleryPhotoItem, 'id'>) => void;
+  updateGalleryPhoto: (id: string, imageUrl: string) => void;
   deleteGalleryPhoto: (id: string) => void;
   resetPhoto: (slot?: 'general' | 'pride' | 'jaipur') => void;
   isUploadModalOpen: boolean;
@@ -29,15 +31,10 @@ interface AstrologerPhotoContextType {
   setLightboxPhoto: (photo: GalleryPhotoItem | null) => void;
 }
 
-const STORAGE_KEY_CUSTOM = 'astro_guru_custom_photo_v3';
-const STORAGE_KEY_PRIDE = 'astro_guru_pride_photo_v3';
-const STORAGE_KEY_JAIPUR = 'astro_guru_jaipur_photo_v3';
-const STORAGE_KEY_GALLERY = 'astro_guru_gallery_photos_v3';
-
-// Legacy keys to migrate if user already uploaded in previous session
-const LEGACY_STORAGE_CUSTOM = 'astro_guru_custom_photo_v2';
-const LEGACY_STORAGE_PRIDE = 'astro_guru_pride_photo_v2';
-const LEGACY_STORAGE_JAIPUR = 'astro_guru_jaipur_photo_v2';
+const STORAGE_KEY_CUSTOM = 'astro_guru_custom_photo_v8';
+const STORAGE_KEY_PRIDE = 'astro_guru_pride_photo_v8';
+const STORAGE_KEY_JAIPUR = 'astro_guru_jaipur_photo_v8';
+const STORAGE_KEY_GALLERY = 'astro_guru_gallery_photos_v8';
 
 const AstrologerPhotoContext = createContext<AstrologerPhotoContextType | undefined>(undefined);
 
@@ -100,29 +97,32 @@ export const AstrologerPhotoProvider: React.FC<{ children: ReactNode }> = ({ chi
   // Initialize from localStorage -> or configured permanent URLs -> or bundled default images
   const [customPhoto, setCustomPhotoState] = useState<string>(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY_CUSTOM) || localStorage.getItem(LEGACY_STORAGE_CUSTOM);
-      return saved || DEFAULT_SITE_IMAGES.permanentHeroUrl || DEFAULT_SITE_IMAGES.heroPortrait;
-    } catch {
-      return DEFAULT_SITE_IMAGES.permanentHeroUrl || DEFAULT_SITE_IMAGES.heroPortrait;
-    }
+      const saved = localStorage.getItem(STORAGE_KEY_CUSTOM);
+      if (saved && !saved.startsWith('blob:') && !saved.startsWith('http://localhost')) {
+        return saved;
+      }
+    } catch {}
+    return DEFAULT_SITE_IMAGES.permanentHeroUrl || astrologerPortrait;
   });
 
   const [pridePhoto, setPridePhotoState] = useState<string>(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY_PRIDE) || localStorage.getItem(LEGACY_STORAGE_PRIDE);
-      return saved || DEFAULT_SITE_IMAGES.permanentPrideUrl || DEFAULT_SITE_IMAGES.prideAwardPhoto;
-    } catch {
-      return DEFAULT_SITE_IMAGES.permanentPrideUrl || DEFAULT_SITE_IMAGES.prideAwardPhoto;
-    }
+      const saved = localStorage.getItem(STORAGE_KEY_PRIDE);
+      if (saved && !saved.startsWith('blob:') && !saved.startsWith('http://localhost')) {
+        return saved;
+      }
+    } catch {}
+    return DEFAULT_SITE_IMAGES.permanentPrideUrl || astrologerPortrait;
   });
 
   const [jaipurPhoto, setJaipurPhotoState] = useState<string>(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY_JAIPUR) || localStorage.getItem(LEGACY_STORAGE_JAIPUR);
-      return saved || DEFAULT_SITE_IMAGES.permanentJaipurUrl || DEFAULT_SITE_IMAGES.jaipurAwardPhoto;
-    } catch {
-      return DEFAULT_SITE_IMAGES.permanentJaipurUrl || DEFAULT_SITE_IMAGES.jaipurAwardPhoto;
-    }
+      const saved = localStorage.getItem(STORAGE_KEY_JAIPUR);
+      if (saved && !saved.startsWith('blob:') && !saved.startsWith('http://localhost')) {
+        return saved;
+      }
+    } catch {}
+    return DEFAULT_SITE_IMAGES.permanentJaipurUrl || jaipurAwardPhoto;
   });
 
   const [galleryPhotos, setGalleryPhotos] = useState<GalleryPhotoItem[]>(() => {
@@ -130,7 +130,12 @@ export const AstrologerPhotoProvider: React.FC<{ children: ReactNode }> = ({ chi
       const saved = localStorage.getItem(STORAGE_KEY_GALLERY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed.filter((p: GalleryPhotoItem) => 
+            p.id !== 'gallery-pride-national-award' && 
+            p.id !== 'gallery-vedic-session-pune'
+          );
+        }
       }
     } catch {}
     return DEFAULT_GALLERY_PHOTOS;
@@ -211,6 +216,41 @@ export const AstrologerPhotoProvider: React.FC<{ children: ReactNode }> = ({ chi
     }
   };
 
+  const updateGalleryPhoto = (id: string, imageUrl: string) => {
+    const updated = galleryPhotos.map(p => p.id === id ? { ...p, imageUrl } : p);
+    setGalleryPhotos(updated);
+    try {
+      localStorage.setItem(STORAGE_KEY_GALLERY, JSON.stringify(updated));
+    } catch (e) {
+      console.warn('Could not persist gallery to localStorage:', e);
+    }
+  };
+
+  const syncGallerySlot = (targetSlot: 'general' | 'pride' | 'jaipur', url: string) => {
+    const targetId = targetSlot === 'pride' 
+      ? 'gallery-pride-national-award' 
+      : targetSlot === 'jaipur' 
+      ? 'gallery-jaipur-green-award' 
+      : null;
+
+    if (targetId && galleryPhotos.some(p => p.id === targetId)) {
+      updateGalleryPhoto(targetId, url);
+    } else {
+      addGalleryPhoto({
+        title: targetSlot === 'pride' 
+          ? 'Pride National Excellence Award' 
+          : 'Jaipur Green Developers Award Ceremony',
+        ceremony: targetSlot === 'pride'
+          ? 'Pride Awards • Radisson Blu & Insights Success'
+          : 'Annual National Excellence Convention, Jaipur',
+        category: 'Stage Felicitation',
+        imageUrl: url,
+        caption: 'Astro Love Guru Pt. Rohit Sharma receiving honors on stage.',
+        badge: targetSlot === 'pride' ? 'Pride Award' : 'Jaipur Award'
+      });
+    }
+  };
+
   // Support direct public image URL (from ImgBB, PostImages, Cloudinary, AWS S3, etc.)
   const setPhotoUrl = (url: string, targetSlot: 'general' | 'pride' | 'jaipur' = uploadTargetSlot): boolean => {
     const trimmed = url.trim();
@@ -227,18 +267,7 @@ export const AstrologerPhotoProvider: React.FC<{ children: ReactNode }> = ({ chi
       setJaipurPhoto(trimmed);
     }
 
-    addGalleryPhoto({
-      title: targetSlot === 'pride' 
-        ? 'Pride National Excellence Award' 
-        : 'Jaipur Green Developers Award Ceremony',
-      ceremony: targetSlot === 'pride'
-        ? 'Pride Awards • Radisson Blu & Insights Success'
-        : 'Annual National Excellence Convention, Jaipur',
-      category: 'Stage Felicitation',
-      imageUrl: trimmed,
-      caption: 'Astro Love Guru Pt. Rohit Sharma receiving honors on stage.',
-      badge: targetSlot === 'pride' ? 'Pride Award' : 'Jaipur Award'
-    });
+    syncGallerySlot(targetSlot, trimmed);
 
     return true;
   };
@@ -262,19 +291,7 @@ export const AstrologerPhotoProvider: React.FC<{ children: ReactNode }> = ({ chi
         setJaipurPhoto(compressedDataUrl);
       }
 
-      // Also add to gallery
-      addGalleryPhoto({
-        title: targetSlot === 'pride' 
-          ? 'Pride National Excellence Award' 
-          : 'Jaipur Green Developers Award Ceremony',
-        ceremony: targetSlot === 'pride'
-          ? 'Pride Awards • Radisson Blu & Insights Success'
-          : 'Annual National Excellence Convention, Jaipur',
-        category: 'Stage Felicitation',
-        imageUrl: compressedDataUrl,
-        caption: 'Astro Love Guru Pt. Rohit Sharma receiving the prestigious golden trophy at Jaipur Green Developers Award.',
-        badge: targetSlot === 'pride' ? 'Pride Award' : 'Jaipur Award'
-      });
+      syncGallerySlot(targetSlot, compressedDataUrl);
 
       return true;
     } catch (err) {
@@ -309,13 +326,14 @@ export const AstrologerPhotoProvider: React.FC<{ children: ReactNode }> = ({ chi
         pridePhoto,
         jaipurPhoto,
         galleryPhotos,
-        defaultPhoto: defaultAstrologerImage,
+        defaultPhoto: astrologerPortrait,
         setCustomPhoto,
         setPridePhoto,
         setJaipurPhoto,
         setPhotoUrl,
         uploadPhoto,
         addGalleryPhoto,
+        updateGalleryPhoto,
         deleteGalleryPhoto,
         resetPhoto,
         isUploadModalOpen,

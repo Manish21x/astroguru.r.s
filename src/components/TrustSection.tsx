@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Award, CheckCircle, Shield, Sparkles, BookOpen, Star, ArrowRight, X, HeartHandshake, Compass, GraduationCap, Trophy, Medal, Camera, Upload, Instagram, MessageCircle, Phone } from 'lucide-react';
+import { Award, CheckCircle, Shield, Sparkles, BookOpen, Star, ArrowRight, X, HeartHandshake, Compass, GraduationCap, Trophy, Medal, Instagram, MessageCircle, Phone } from 'lucide-react';
 import { ASTROLOGER_PROFILE } from '../data/astrologyData';
 import { useAstrologerPhoto } from '../utils/photoStorage';
-import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
+import astrologerPortrait from '../assets/images/astrologer_portrait.png';
+import aboutAstrologerImage from '../assets/images/regenerated_image_1791117164443.jpg';
 
 interface TrustSectionProps {
   onOpenWhatsApp: (topic?: string) => void;
@@ -10,32 +11,7 @@ interface TrustSectionProps {
 
 export const TrustSection: React.FC<TrustSectionProps> = ({ onOpenWhatsApp }) => {
   const [showBioModal, setShowBioModal] = useState(false);
-  const { customPhoto, setIsUploadModalOpen, uploadPhoto } = useAstrologerPhoto();
-  const fileInputRef = React.useRef<HTMLInputElement>(null);
-  const [isDragOver, setIsDragOver] = useState(false);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
-
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const success = await uploadPhoto(e.target.files[0], 'general');
-      if (success) {
-        setUploadSuccess(true);
-        setTimeout(() => setUploadSuccess(false), 3000);
-      }
-    }
-  };
-
-  const handleDrop = async (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const success = await uploadPhoto(e.dataTransfer.files[0], 'general');
-      if (success) {
-        setUploadSuccess(true);
-        setTimeout(() => setUploadSuccess(false), 3000);
-      }
-    }
-  };
+  const { customPhoto } = useAstrologerPhoto();
 
 
   const stats = [
@@ -134,144 +110,27 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ onOpenWhatsApp }) =>
               <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-[#D4AF37]/30 to-[#9C27B0]/30 blur-lg -z-10" />
               <div className="relative rounded-2xl overflow-hidden border-2 border-[#D4AF37]/40 bg-[#0B0914] shadow-xl">
                 
-                {customPhoto ? (
-                  <div 
-                    onDragOver={(e) => {
-                      e.preventDefault();
-                      setIsDragOver(true);
+                <div className="relative w-full h-96 bg-[#0E0A1E] overflow-hidden flex items-center justify-center">
+                  <img
+                    src={aboutAstrologerImage}
+                    alt={ASTROLOGER_PROFILE.name}
+                    className="w-full h-full object-cover object-top filter brightness-100 contrast-[1.04]"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      if (e.currentTarget.src !== aboutAstrologerImage) {
+                        e.currentTarget.src = aboutAstrologerImage;
+                      }
                     }}
-                    onDragLeave={() => setIsDragOver(false)}
-                    onDrop={handleDrop}
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`relative w-full h-96 bg-[#0E0A1E] overflow-hidden group cursor-pointer transition-all duration-300 ${
-                      isDragOver ? 'ring-4 ring-[#D4AF37] scale-[1.01]' : ''
-                    }`}
-                    title="Click or drag image to upload photo"
-                  >
-                    <img
-                      src={customPhoto}
-                      alt={ASTROLOGER_PROFILE.name}
-                      className="w-full h-full object-cover object-top filter brightness-100 contrast-[1.04] transition-transform duration-500 group-hover:scale-105"
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        if (e.currentTarget.src !== defaultAstrologerImage) {
-                          e.currentTarget.src = defaultAstrologerImage;
-                        }
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0914] via-transparent to-[#0B0914]/40 pointer-events-none" />
-                    
-                    {/* Hover Upload Overlay */}
-                    <div className="absolute inset-0 bg-[#0B0914]/65 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center z-20">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-r from-[#FDE08B] to-[#D4AF37] text-[#0B0914] flex items-center justify-center mb-2 shadow-xl transform group-hover:scale-110 transition-transform">
-                        <Upload className="w-5 h-5 text-[#0B0914]" />
-                      </div>
-                      <span className="text-xs font-bold text-[#F3EFE6] bg-[#0E0A1E]/90 px-3.5 py-1.5 rounded-full border border-[#D4AF37]/60 shadow-lg">
-                        Click or Drag to Upload Image
-                      </span>
-                      <span className="text-[10px] text-[#FFDF78] mt-1 font-medium">Supports JPG, PNG, WEBP</span>
-                    </div>
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B0914] via-transparent to-[#0B0914]/40 pointer-events-none" />
 
-                    {/* Upload Success Banner */}
-                    {uploadSuccess && (
-                      <div className="absolute inset-0 bg-[#06331E]/90 backdrop-blur-sm flex flex-col items-center justify-center z-30 animate-in fade-in duration-300">
-                        <div className="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mb-2 shadow-lg">
-                          <CheckCircle className="w-7 h-7" />
-                        </div>
-                        <span className="text-sm font-bold text-white">Image Uploaded Successfully!</span>
-                      </div>
-                    )}
-
-                    <div className="absolute top-3 right-3 z-10" onClick={(e) => e.stopPropagation()}>
-                      <button
-                        onClick={() => fileInputRef.current?.click()}
-                        className="px-2.5 py-1.5 rounded-lg bg-[#0B0914]/85 hover:bg-[#D4AF37] text-[#D4AF37] hover:text-[#0B0914] border border-[#D4AF37]/50 shadow transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-bold"
-                        title="Upload New Photo"
-                      >
-                        <Camera className="w-3.5 h-3.5" />
-                        <span>Upload</span>
-                      </button>
-                    </div>
-
-                    <div className="absolute top-3 left-3 z-10 pointer-events-none">
-                      <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#0B0914]/80 backdrop-blur-sm border border-[#D4AF37]/40 text-[10px] font-bold text-[#FFDF78] uppercase">
-                        <Trophy className="w-3 h-3 text-[#D4AF37]" />
-                        <span>National Icon</span>
-                      </div>
+                  <div className="absolute top-3 left-3 z-10 pointer-events-none">
+                    <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#0B0914]/80 backdrop-blur-sm border border-[#D4AF37]/40 text-[10px] font-bold text-[#FFDF78] uppercase">
+                      <Trophy className="w-3 h-3 text-[#D4AF37]" />
+                      <span>National Icon</span>
                     </div>
                   </div>
-                ) : (
-                  /* Spiritual Portrait Graphic */
-                  <div 
-                    onDragOver={(e) => {
-                      e.preventDefault();
-                      setIsDragOver(true);
-                    }}
-                    onDragLeave={() => setIsDragOver(false)}
-                    onDrop={handleDrop}
-                    onClick={() => fileInputRef.current?.click()}
-                    className={`w-full h-96 bg-gradient-to-b from-[#1C1433] via-[#120D24] to-[#0A0714] p-6 flex flex-col justify-between items-center text-center relative overflow-hidden cursor-pointer transition-all ${
-                      isDragOver ? 'ring-4 ring-[#D4AF37]' : ''
-                    }`}
-                  >
-                    
-                    {/* Subtle Background Vedic Mandala Lines */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
-                      <div className="w-64 h-64 rounded-full border border-[#D4AF37] border-dashed animate-spin-slow" />
-                    </div>
-
-                    {/* Top honor badge */}
-                    <div className="z-10 w-full flex items-center justify-between">
-                      <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-[10px] font-bold text-[#FFDF78] uppercase">
-                        <Trophy className="w-3 h-3 text-[#D4AF37]" />
-                        <span>National Pride Icon</span>
-                      </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          fileInputRef.current?.click();
-                        }}
-                        className="p-1 rounded-lg bg-[#D4AF37]/20 hover:bg-[#D4AF37] text-[#FFDF78] hover:text-[#0B0914] text-[10px] font-bold px-2 py-0.5 border border-[#D4AF37]/40 transition-colors flex items-center gap-1 cursor-pointer"
-                      >
-                        <Upload className="w-3 h-3" />
-                        <span>Add Pic</span>
-                      </button>
-                    </div>
-
-                    {/* Central Avatar Visual */}
-                    <div className="relative my-auto z-10">
-                      <div className="w-32 h-32 rounded-full bg-gradient-to-tr from-[#F59E0B] via-[#D4AF37] to-[#855B06] p-1 shadow-2xl flex items-center justify-center">
-                        <div className="w-full h-full rounded-full bg-[#0E0A1E] flex flex-col items-center justify-center border border-[#FFDF78]/50 p-2">
-                          <span className="text-3xl text-[#D4AF37] font-serif font-bold">ॐ</span>
-                          <span className="text-xs font-bold text-[#F3EFE6] mt-1">Astro Love Guru</span>
-                        </div>
-                      </div>
-                      {/* Medal tag */}
-                      <div className="absolute -bottom-2 -right-1 bg-gradient-to-r from-[#FDE08B] to-[#D4AF37] text-[#0B0914] p-1.5 rounded-full shadow-lg">
-                        <Medal className="w-4 h-4 text-[#0B0914]" />
-                      </div>
-                    </div>
-
-                    {/* Sacred Tilak & Wisdom Note */}
-                    <div className="z-10 space-y-1">
-                      <p className="text-xs text-[#FFDF78] font-semibold">
-                        सत्यमेव जयते • धर्मो रक्षति रक्षितः
-                      </p>
-                      <p className="text-[11px] text-[#C5B79F]">
-                        Click or drag photo here to upload
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Hidden File Input for Direct Astrologer Photo Upload */}
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={handleFileSelect}
-                />
+                </div>
 
                 <div className="p-4 bg-[#0E0A1E] border-t border-[#D4AF37]/20 text-center flex flex-col items-center gap-2">
                   <div>

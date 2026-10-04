@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Award, Trophy, Star, Sparkles, ShieldCheck, CheckCircle2, Medal, ExternalLink, ChevronRight, Camera, Upload, X, ZoomIn, MessageCircle, Phone } from 'lucide-react';
+import { Award, Trophy, Star, Sparkles, ShieldCheck, CheckCircle2, Medal, ExternalLink, ChevronRight, X, ZoomIn, MessageCircle, Phone } from 'lucide-react';
 import { HONORS_AND_AWARDS, ASTROLOGER_PROFILE, AwardItem } from '../data/astrologyData';
 import { CeremonyPhotoCard } from './CeremonyPhotoCard';
 import { useAstrologerPhoto } from '../utils/photoStorage';
-import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
+import astrologerPortrait from '../assets/images/astrologer_portrait.png';
 
 interface AwardsSectionProps {
   onOpenWhatsApp: (topic?: string) => void;
@@ -11,7 +11,13 @@ interface AwardsSectionProps {
 
 export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) => {
   const [selectedAward, setSelectedAward] = useState<AwardItem | null>(null);
-  const { setIsUploadModalOpen, lightboxPhoto, setLightboxPhoto, galleryPhotos } = useAstrologerPhoto();
+  const { 
+    lightboxPhoto, 
+    setLightboxPhoto, 
+    galleryPhotos,
+    pridePhoto,
+    jaipurPhoto 
+  } = useAstrologerPhoto();
 
 
   return (
@@ -53,13 +59,6 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
                   <Award className="w-3.5 h-3.5 text-[#D4AF37]" />
                   Pride National Icon Award
                 </span>
-                <button
-                  onClick={() => setIsUploadModalOpen(true, 'pride')}
-                  className="text-xs text-[#FFDF78] hover:text-white font-medium flex items-center gap-1 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 px-2.5 py-1 rounded-lg border border-[#D4AF37]/30 transition-colors cursor-pointer"
-                >
-                  <Camera className="w-3 h-3 text-[#D4AF37]" />
-                  <span>Update Pride Pic</span>
-                </button>
               </div>
 
               {/* Ceremony Photo Card Component for Pride Award */}
@@ -67,7 +66,6 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
                 <CeremonyPhotoCard
                   variant="award-section"
                   awardType="pride"
-                  onOpenUpload={(slot) => setIsUploadModalOpen(true, slot)}
                 />
               </div>
 
@@ -106,13 +104,6 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
                   <Trophy className="w-3.5 h-3.5 text-[#D4AF37]" />
                   Jaipur Green Developers Award
                 </span>
-                <button
-                  onClick={() => setIsUploadModalOpen(true, 'jaipur')}
-                  className="text-xs text-[#FFDF78] hover:text-white font-medium flex items-center gap-1 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 px-2.5 py-1 rounded-lg border border-[#D4AF37]/30 transition-colors cursor-pointer"
-                >
-                  <Camera className="w-3 h-3 text-[#D4AF37]" />
-                  <span>Update Jaipur Pic</span>
-                </button>
               </div>
 
               {/* Ceremony Photo Card Component for Jaipur Award */}
@@ -120,7 +111,6 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
                 <CeremonyPhotoCard
                   variant="award-section"
                   awardType="jaipur"
-                  onOpenUpload={(slot) => setIsUploadModalOpen(true, slot)}
                 />
               </div>
 
@@ -162,53 +152,52 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
                   Authentic ceremony photographs, golden trophy felicitation, and spiritual sessions.
                 </p>
               </div>
-              <button
-                onClick={() => setIsUploadModalOpen(true)}
-                className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#D4AF37]/15 hover:bg-[#D4AF37]/25 text-[#FFDF78] border border-[#D4AF37]/40 flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <Camera className="w-3.5 h-3.5 text-[#D4AF37]" />
-                <span>Add / Manage Ceremony Photos</span>
-              </button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {galleryPhotos.map((photo) => (
-                <div
-                  key={photo.id}
-                  onClick={() => setLightboxPhoto(photo)}
-                  className="group relative rounded-2xl overflow-hidden bg-[#120D26] border border-[#D4AF37]/30 hover:border-[#D4AF37] cursor-pointer transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex flex-col"
-                >
-                  <div className="aspect-[4/3] w-full overflow-hidden bg-black/40 relative">
-                    <img
-                      src={photo.imageUrl}
-                      alt={photo.title}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        if (e.currentTarget.src !== defaultAstrologerImage) {
-                          e.currentTarget.src = defaultAstrologerImage;
-                        }
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B0914] via-transparent to-transparent pointer-events-none" />
-                  </div>
-                  <div className="p-3 bg-[#0B0914] border-t border-[#D4AF37]/20 flex-1 flex flex-col justify-between">
-                    <div>
-                      {photo.badge && (
-                        <span className="text-[9px] font-bold text-[#FFDF78] bg-[#D4AF37]/20 px-1.5 py-0.5 rounded border border-[#D4AF37]/30 mb-1 inline-block">
-                          {photo.badge}
-                        </span>
-                      )}
-                      <h4 className="text-xs font-bold text-[#F3EFE6] truncate group-hover:text-[#D4AF37] transition-colors">
-                        {photo.title}
-                      </h4>
-                      <p className="text-[10px] text-[#A89C86] truncate mt-0.5">
-                        {photo.ceremony}
-                      </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {galleryPhotos.map((photo) => {
+                const activePhotoUrl = photo.id === 'gallery-jaipur-green-award' && jaipurPhoto
+                  ? jaipurPhoto
+                  : photo.imageUrl;
+
+                return (
+                  <div
+                    key={photo.id}
+                    onClick={() => setLightboxPhoto({ ...photo, imageUrl: activePhotoUrl })}
+                    className="group relative rounded-2xl overflow-hidden bg-[#120D26] border border-[#D4AF37]/30 hover:border-[#D4AF37] cursor-pointer transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex flex-col"
+                  >
+                    <div className="aspect-[4/3] w-full overflow-hidden bg-black/40 relative">
+                      <img
+                        src={activePhotoUrl}
+                        alt={photo.title}
+                        className="w-full h-full object-cover object-top filter brightness-100 contrast-105 saturate-105 group-hover:scale-108 transition-all duration-500 ease-out"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          if (e.currentTarget.src !== astrologerPortrait) {
+                            e.currentTarget.src = astrologerPortrait;
+                          }
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0B0914] via-transparent to-transparent pointer-events-none" />
+                    </div>
+                    <div className="p-4 bg-[#0B0914] border-t border-[#D4AF37]/20 flex-1 flex flex-col justify-between">
+                      <div>
+                        {photo.badge && (
+                          <span className="text-[10px] font-bold text-[#FFDF78] bg-[#D4AF37]/20 px-2 py-0.5 rounded border border-[#D4AF37]/30 mb-1.5 inline-block">
+                            {photo.badge}
+                          </span>
+                        )}
+                        <h4 className="text-sm font-bold text-[#F3EFE6] truncate group-hover:text-[#D4AF37] transition-colors">
+                          {photo.title}
+                        </h4>
+                        <p className="text-xs text-[#A89C86] line-clamp-1 mt-0.5">
+                          {photo.ceremony}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
@@ -333,18 +322,7 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
               )}
             </div>
 
-            <div className="mt-4 pt-3 border-t border-[#D4AF37]/20 flex items-center justify-between">
-              <button
-                onClick={() => {
-                  setLightboxPhoto(null);
-                  setIsUploadModalOpen(true);
-                }}
-                className="text-xs text-[#D4AF37] hover:underline flex items-center gap-1"
-              >
-                <Camera className="w-3.5 h-3.5" />
-                <span>Change Image</span>
-              </button>
-
+            <div className="mt-4 pt-3 border-t border-[#D4AF37]/20 flex items-center justify-end">
               <button
                 onClick={() => setLightboxPhoto(null)}
                 className="px-4 py-1.5 rounded-xl text-xs font-semibold bg-[#D4AF37] text-[#0B0914] hover:bg-[#FDE08B] transition-colors"

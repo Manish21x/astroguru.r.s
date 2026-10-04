@@ -1,5 +1,6 @@
 import { ServiceItem, ZodiacSign, NakshatraItem, TestimonialItem, BlogPostItem } from '../types';
-import defaultAstrologerImage from '../assets/images/regenerated_image_1787573239190.png';
+import astrologerPortrait from '../assets/images/astrologer_portrait.png';
+import jaipurAwardPhoto from '../assets/images/regenerated_image_1791117433897.jpg';
 import blogImageB1 from '../assets/images/regenerated_image_1787574835628.png';
 import blogImageB2 from '../assets/images/regenerated_image_1787574845183.png';
 
@@ -21,13 +22,12 @@ export interface GalleryPhotoItem {
  * for ALL visitors across all devices.
  */
 export const DEFAULT_SITE_IMAGES = {
-  heroPortrait: defaultAstrologerImage,
-  prideAwardPhoto: defaultAstrologerImage,
-  jaipurAwardPhoto: defaultAstrologerImage,
-  // If you host photos on ImgBB, PostImages, Cloudinary or S3, paste the public URL below:
-  permanentHeroUrl: '',
-  permanentPrideUrl: '',
-  permanentJaipurUrl: '',
+  heroPortrait: astrologerPortrait,
+  prideAwardPhoto: astrologerPortrait,
+  jaipurAwardPhoto: jaipurAwardPhoto,
+  permanentHeroUrl: astrologerPortrait,
+  permanentPrideUrl: astrologerPortrait,
+  permanentJaipurUrl: jaipurAwardPhoto,
 };
 
 export const DEFAULT_GALLERY_PHOTOS: GalleryPhotoItem[] = [
@@ -36,30 +36,10 @@ export const DEFAULT_GALLERY_PHOTOS: GalleryPhotoItem[] = [
     title: "Jaipur Green Developers Award Ceremony",
     ceremony: "Annual National Excellence Convention, Jaipur",
     category: "Golden Trophy Felicitation",
-    imageUrl: defaultAstrologerImage,
+    imageUrl: jaipurAwardPhoto,
     caption: "Astro Love Guru Pt. Rohit Sharma receiving the prestigious golden trophy at Jaipur Green Developers National Excellence Award Ceremony.",
     badge: "Golden Trophy",
     date: "Annual Convention"
-  },
-  {
-    id: "gallery-pride-national-award",
-    title: "Pride National Excellence Award Gala",
-    ceremony: "Pride Awards Season 7 • Radisson Blu & Insights Success",
-    category: "National Stage Felicitation",
-    imageUrl: defaultAstrologerImage,
-    caption: "Felicitated on the national stage under the Tricolour backdrop for 15+ years of ethical Vedic astrology and relationship counseling.",
-    badge: "National Icon",
-    date: "Season 7 Gala"
-  },
-  {
-    id: "gallery-vedic-session-pune",
-    title: "Vedic Jyotish & Planetary Transit Seminar",
-    ceremony: "Astro Love Guru Sansthan, Pune",
-    category: "Vedic Guidance",
-    imageUrl: blogImageB1,
-    caption: "Spiritual discourse on Vimshottari Mahadasha transitions and practical planetary remedies for marital peace and career growth.",
-    badge: "Pune Sansthan",
-    date: "Spiritual Discourse"
   },
   {
     id: "gallery-kundli-compatibility",

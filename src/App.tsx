@@ -14,7 +14,6 @@ import { Footer } from './components/Footer';
 import { ServiceDetailModal } from './components/ServiceDetailModal';
 import { ArticleModal } from './components/ArticleModal';
 import { PolicyModal } from './components/PolicyModal';
-import { PhotoUploadModal } from './components/PhotoUploadModal';
 import { AstrologerPhotoProvider } from './utils/photoStorage';
 import { ServiceItem, BlogPostItem } from './types';
 import { ASTROLOGER_PROFILE } from './data/astrologyData';
@@ -168,9 +167,6 @@ export default function App() {
           policyName={selectedPolicyName}
           onClose={() => setSelectedPolicyName(null)}
         />
-
-        {/* Modal 4: Photo Upload & Astrologer Picture Management */}
-        <PhotoUploadModal />
 
       </div>
     </AstrologerPhotoProvider>
