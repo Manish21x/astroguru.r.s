@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Cinzel', 'Marcellus', serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-marcellus {
+  font-family: 'Marcellus', 'Cinzel', serif;
+}
+
+.font-display {
+  font-family: var(--font-serif);
+}
+
+.font-sans-ui {
+  font-family: var(--font-sans);
+}
+
+/* Luxury astrology glow effects */
+.gold-glow {
+  box-shadow: 0 0 35px -5px rgba(212, 175, 55, 0.25);
+}
+
+.gold-glow-sm {
+  box-shadow: 0 0 15px -3px rgba(212, 175, 55, 0.2);
+}
+
+.purple-glow {
+  box-shadow: 0 0 50px -10px rgba(126, 58, 242, 0.25);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FFF0BE 0%, #D4AF37 50%, #AA820A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-subtle {
+  background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #E6CA65 0%, #D4AF37 50%, #B38E1B 100%);
+}
+
+.bg-cosmic-card {
+  background: linear-gradient(180deg, rgba(26, 21, 46, 0.75) 0%, rgba(15, 12, 28, 0.85) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.bg-cosmic-card-hover:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.15), 0 0 20px -5px rgba(126, 58, 242, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0914;
+}
+::-webkit-scrollbar-thumb {
+  background: #2D2550;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Rotating astrology mandala animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 90s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spin-slow 120s linear infinite reverse;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 6s ease-in-out infinite;
+}
