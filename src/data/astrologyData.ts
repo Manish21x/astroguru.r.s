@@ -39,8 +39,8 @@ export const ASTROLOGER_PROFILE = {
   rawPhone: "9352479593",
   whatsapp: "+919352479593",
   email: "consultation@astroloveguru.com",
-  instagram: "https://www.instagram.com/rohit_sharma_tarotworld?igsi=OXpjZjMzZjhrNzRy",
-  instagramHandle: "@rohit_sharma_tarotworld",
+  instagram: "https://www.instagram.com/astro_rohit_sharma_jiii?stkn=aHFvb3Z0MDEwNTd1",
+  instagramHandle: "@astro_rohit_sharma_jiii",
   officeAddress: "Astro_love_guru Sansthan, Koregaon Park / FC Road, Pune, Maharashtra 411001",
   shortBio: "Astro Love Guru Pt. Rohit Sharma is one of India's most trusted and felicitated Vedic Astrologers, recognized for transformative guidance in Love, Relationship, Career, Business, Finance, Education, Family, and Health issues. Based in Pune, Maharashtra, Pt. Rohit Sharma seamlessly integrates authentic Parashari principles, KP astrology, and scientifically aligned remedial measures to bring clarity, peace, and prosperity to thousands of seekers worldwide.",
   highlights: [
