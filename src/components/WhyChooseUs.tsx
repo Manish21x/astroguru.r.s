@@ -117,7 +117,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ onOpenWhatsApp }) => {
           ))}
         </div>
 
-        {/* High-Impact Comparison Table: Standard vs Pt. Rohit Sharma */}
+        {/* High-Impact Comparison Table: Standard vs Pt. Sagar Bhargava */}
         <div className="bg-[#130E26] rounded-3xl border border-[#D4AF37]/30 p-6 sm:p-10 shadow-2xl backdrop-blur-md">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <h3 className="font-heading text-2xl font-bold text-[#F3EFE6] mb-1">

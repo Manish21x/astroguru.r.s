@@ -182,7 +182,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
               <div className="py-8 text-center space-y-3">
                 <CheckCircle className="w-12 h-12 text-emerald-400 mx-auto animate-bounce" />
                 <h4 className="text-base font-bold text-[#F3EFE6]">Thank You For Your Gracious Words!</h4>
-                <p className="text-xs text-[#C4B79E]">Your review has been submitted for Pt. Rohit Sharma Ji's blessings.</p>
+                <p className="text-xs text-[#C4B79E]">Your review has been submitted for Pt. Sagar Bhargava Ji's blessings.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmitReview} className="space-y-4">
@@ -233,7 +233,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = () => {
                     rows={3}
                     value={reviewerText}
                     onChange={(e) => setReviewerText(e.target.value)}
-                    placeholder="Describe how Pt. Rohit Sharma's guidance helped your situation..."
+                    placeholder="Describe how Pt. Sagar Bhargava's guidance helped your situation..."
                     required
                     className="w-full px-3 py-2 rounded-xl bg-[#1B1435] border border-[#D4AF37]/30 text-xs text-[#F3EFE6] focus:outline-none focus:border-[#D4AF37]"
                   />

@@ -57,7 +57,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenWhatsApp, onSelectPolicy }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#E1306C]/15 hover:bg-[#E1306C]/25 text-[#FF80AB] border border-[#E1306C]/40 text-xs font-semibold transition-all hover:scale-105"
-                title="Follow Pt. Rohit Sharma on Instagram"
+                title="Follow Pt. Sagar Bhargava on Instagram"
               >
                 <Instagram className="w-4 h-4" />
                 <span>Instagram: {ASTROLOGER_PROFILE.instagramHandle}</span>

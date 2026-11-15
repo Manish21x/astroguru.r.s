@@ -28,8 +28,8 @@ export default function App() {
   const handleOpenWhatsApp = (topic?: string) => {
     const cleanPhone = ASTROLOGER_PROFILE.whatsapp.replace(/[^0-9]/g, '');
     const message = topic
-      ? `Namaste Astro Love Guru Pt. Rohit Sharma Ji, I visited your website and would like guidance regarding "${topic}". Please guide me.`
-      : `Namaste Astro Love Guru Pt. Rohit Sharma Ji, I visited your website and would like to connect for personal astrological guidance.`;
+      ? `Namaste Astro Love Guru Pt. Sagar Bhargava Ji, I visited your website and would like guidance regarding "${topic}". Please guide me.`
+      : `Namaste Astro Love Guru Pt. Sagar Bhargava Ji, I visited your website and would like to connect for personal astrological guidance.`;
     const text = encodeURIComponent(message);
     window.open(`https://wa.me/${cleanPhone}?text=${text}`, '_blank');
   };
@@ -123,7 +123,7 @@ export default function App() {
             onClick={() => handleOpenWhatsApp()}
             id="floating-whatsapp-btn"
             className="group relative flex items-center gap-3 px-4 py-2.5 sm:px-5 sm:py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-2xl shadow-[#25D366]/40 border-2 border-white/60 hover:border-white hover:scale-105 hover:shadow-emerald-500/50 transition-all duration-300 cursor-pointer overflow-hidden"
-            title="Chat securely with Pt. Rohit Sharma on WhatsApp (End-to-End Encrypted)"
+            title="Chat securely with Pt. Sagar Bhargava on WhatsApp (End-to-End Encrypted)"
           >
             {/* Subtle Ambient Shimmer */}
             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />

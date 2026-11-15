@@ -206,7 +206,7 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ onOpenWhatsApp }) =>
               </button>
 
               <button
-                onClick={() => onOpenWhatsApp('Vedic Astrology Consultation with Pt. Rohit Sharma')}
+                onClick={() => onOpenWhatsApp('Vedic Astrology Consultation with Pt. Sagar Bhargava')}
                 id="about-whatsapp-consult-btn"
                 className="px-6 py-3 rounded-xl text-sm font-bold text-white bg-[#25D366] hover:bg-[#20bd5a] shadow-lg flex items-center space-x-2 cursor-pointer"
               >
@@ -282,7 +282,7 @@ export const TrustSection: React.FC<TrustSectionProps> = ({ onOpenWhatsApp }) =>
                 <button
                   onClick={() => {
                     setShowBioModal(false);
-                    onOpenWhatsApp('Consultation with Pt. Rohit Sharma');
+                    onOpenWhatsApp('Consultation with Pt. Sagar Bhargava');
                   }}
                   className="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-[#25D366] hover:bg-[#20bd5a] shadow-md cursor-pointer flex items-center gap-1.5"
                 >

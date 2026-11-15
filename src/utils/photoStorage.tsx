@@ -245,7 +245,7 @@ export const AstrologerPhotoProvider: React.FC<{ children: ReactNode }> = ({ chi
           : 'Annual National Excellence Convention, Jaipur',
         category: 'Stage Felicitation',
         imageUrl: url,
-        caption: 'Astro Love Guru Pt. Rohit Sharma receiving honors on stage.',
+        caption: 'Astro Love Guru Pt. Sagar Bhargava receiving honors on stage.',
         badge: targetSlot === 'pride' ? 'Pride Award' : 'Jaipur Award'
       });
     }

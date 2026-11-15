@@ -73,7 +73,7 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
                 Honoring 15+ Years of Vedic Precision
               </h3>
               <p className="text-[#CBBCA0] text-sm leading-relaxed mb-6">
-                Astro Love Guru Pt. Rohit Sharma was honored on the national stage in recognition of his deep research in Vimshottari Mahadasha timing and non-commercial Vedic consultation philosophy.
+                Astro Love Guru Pt. Sagar Bhargava was honored on the national stage in recognition of his deep research in Vimshottari Mahadasha timing and non-commercial Vedic consultation philosophy.
               </p>
             </div>
 
@@ -118,7 +118,7 @@ export const AwardsSection: React.FC<AwardsSectionProps> = ({ onOpenWhatsApp }) 
                 Ethical & Compassionate Jyotish Leadership
               </h3>
               <p className="text-[#CBBCA0] text-sm leading-relaxed mb-6">
-                Astro Love Guru Pt. Rohit Sharma was felicitated at the grand Jaipur Green Developers convention for debunking astrological fear-mongering and equipping individuals with uplifting spiritual mantras, meditation, and authentic gemological remedies.
+                Astro Love Guru Pt. Sagar Bhargava was felicitated at the grand Jaipur Green Developers convention for debunking astrological fear-mongering and equipping individuals with uplifting spiritual mantras, meditation, and authentic gemological remedies.
               </p>
             </div>
 

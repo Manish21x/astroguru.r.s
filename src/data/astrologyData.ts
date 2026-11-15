@@ -37,7 +37,7 @@ export const DEFAULT_GALLERY_PHOTOS: GalleryPhotoItem[] = [
     ceremony: "Annual National Excellence Convention, Jaipur",
     category: "Golden Trophy Felicitation",
     imageUrl: jaipurAwardPhoto,
-    caption: "Astro Love Guru Pt. Rohit Sharma receiving the prestigious golden trophy at Jaipur Green Developers National Excellence Award Ceremony.",
+    caption: "Astro Love Guru Pt. Sagar Bhargava receiving the prestigious golden trophy at Jaipur Green Developers National Excellence Award Ceremony.",
     badge: "Golden Trophy",
     date: "Annual Convention"
   },
@@ -76,7 +76,7 @@ export const GUIDANCE_TOPICS = [
 ] as const;
 
 export const ASTROLOGER_PROFILE = {
-  name: "Astro Love Guru Pt. Rohit Sharma",
+  name: "Astro Love Guru Pt. Sagar Bhargava",
   shortName: "Astro Love Guru",
   websiteName: "Astro_love_guru",
   title: "National Awardee Vedic Jyotish Acharya & Love Relationship Specialist",
@@ -90,10 +90,10 @@ export const ASTROLOGER_PROFILE = {
   rawPhone: "9352479593",
   whatsapp: "+919352479593",
   email: "consultation@astroloveguru.com",
-  instagram: "https://www.instagram.com/astro_rohit_sharma_jiii?stkn=aHFvb3Z0MDEwNTd1",
-  instagramHandle: "@astro_rohit_sharma_jiii",
+  instagram: "https://www.instagram.com/astro_sagar_bhargava_jiii",
+  instagramHandle: "@astro_sagar_bhargava_jiii",
   officeAddress: "Astro_love_guru Sansthan, Koregaon Park / FC Road, Pune, Maharashtra 411001",
-  shortBio: "Astro Love Guru Pt. Rohit Sharma is one of India's most trusted and felicitated Vedic Astrologers, recognized for transformative guidance in Love, Relationship, Career, Business, Finance, Education, Family, and Health issues. Based in Pune, Maharashtra, Pt. Rohit Sharma seamlessly integrates authentic Parashari principles, KP astrology, and scientifically aligned remedial measures to bring clarity, peace, and prosperity to thousands of seekers worldwide.",
+  shortBio: "Astro Love Guru Pt. Sagar Bhargava is one of India's most trusted and felicitated Vedic Astrologers, recognized for transformative guidance in Love, Relationship, Career, Business, Finance, Education, Family, and Health issues. Based in Pune, Maharashtra, Pt. Sagar Bhargava seamlessly integrates authentic Parashari principles, KP astrology, and scientifically aligned remedial measures to bring clarity, peace, and prosperity to thousands of seekers worldwide.",
   highlights: [
     "National Pride Icon Awardee in Vedic Jyotish & Love Relationship Guidance",
     "Felicitation at Jaipur Green Developers National Excellence Ceremony",
@@ -166,7 +166,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     popular: true,
     duration: "45 Mins Session + Remedy Chart",
     shortDesc: "In-depth astrological analysis of Venus, 5th and 7th houses to heal broken bonds, resolve partner conflict, and find true emotional harmony.",
-    fullDesc: "Love and relationships are deeply influenced by the placement of Venus (Shukra), Mars (Mangal), the 5th house of romance, and the 7th house of lifelong partnership. Astro Love Guru Pt. Rohit Sharma conducts an uncompromising analysis of both partners' planetary charts to identify karmic debts, communication traps, and planetary clashes.",
+    fullDesc: "Love and relationships are deeply influenced by the placement of Venus (Shukra), Mars (Mangal), the 5th house of romance, and the 7th house of lifelong partnership. Astro Love Guru Pt. Sagar Bhargava conducts an uncompromising analysis of both partners' planetary charts to identify karmic debts, communication traps, and planetary clashes.",
     benefits: [
       "Clarity on emotional compatibility and marriage potential",
       "Identification of timing for reconciliation or meeting ideal partner",
@@ -188,7 +188,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     popular: true,
     duration: "60 Mins Detailed Session",
     shortDesc: "Authentic Ashtakoot Kundli Milan, Manglik Dosha evaluation, delay in marriage analysis, and longevity of conjugal happiness.",
-    fullDesc: "Marriage is the most sacred union in Vedic philosophy. Pt. Rohit Sharma goes beyond superficial computer Guna scores by evaluating the crucial Navamsha (D-9) chart, 7th house lord, Jupiter's aspect, and subtle Nadi Dosha cancellations that generic calculators miss.",
+    fullDesc: "Marriage is the most sacred union in Vedic philosophy. Pt. Sagar Bhargava goes beyond superficial computer Guna scores by evaluating the crucial Navamsha (D-9) chart, 7th house lord, Jupiter's aspect, and subtle Nadi Dosha cancellations that generic calculators miss.",
     benefits: [
       "Precise estimation of marriage timing and age period",
       "Deep 36-Guna matching with Nadi and Bhakoot cancellation checks",
@@ -210,7 +210,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     popular: true,
     duration: "45 Mins Session + Career Blueprint",
     shortDesc: "Strategic examination of 10th house (Karma Bhava), Sun, Saturn, and Mercury to align your professional decisions with cosmic timing.",
-    fullDesc: "Whether facing stagnation in a corporate job, deciding between employment vs entrepreneurship, or choosing the right business partners, your 10th House (Karma) and 11th House (Labha) hold the cosmic blueprint. Pt. Rohit Sharma helps you make decisive, profitable career moves.",
+    fullDesc: "Whether facing stagnation in a corporate job, deciding between employment vs entrepreneurship, or choosing the right business partners, your 10th House (Karma) and 11th House (Labha) hold the cosmic blueprint. Pt. Sagar Bhargava helps you make decisive, profitable career moves.",
     benefits: [
       "Optimal periods for job promotions, increments, or foreign assignments",
       "Best business sectors suited to your planetary strengths",
@@ -232,7 +232,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     popular: false,
     duration: "60 Mins Deep Session + PDF Chart",
     shortDesc: "Holistic lifetime analysis decoding physical health, wealth, family lineage, children, spiritual growth, and upcoming major Dasha periods.",
-    fullDesc: "Your Janam Kundli is the exact snapshot of the cosmos at the moment of your first breath. Pt. Rohit Sharma conducts an exhaustive reading spanning Lagna chart, Navamsha chart, Moon chart, and running Vimshottari Mahadasha-Antardasha cycles.",
+    fullDesc: "Your Janam Kundli is the exact snapshot of the cosmos at the moment of your first breath. Pt. Sagar Bhargava conducts an exhaustive reading spanning Lagna chart, Navamsha chart, Moon chart, and running Vimshottari Mahadasha-Antardasha cycles.",
     benefits: [
       "Complete understanding of your life purpose, strengths, and vulnerabilities",
       "Timeline of Golden Periods and precautionary phases for the next 5–10 years",
@@ -276,7 +276,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     popular: false,
     duration: "45 Mins + Remedial Consultation",
     shortDesc: "Identification and authentic Vedic remedial processes for chronic planetary afflictions, obstacles, and recurring delays.",
-    fullDesc: "Doshas are not curses; they are specific planetary tensions representing unfinished karmas. Pt. Rohit Sharma prescribes non-fear-mongering, scripture-rooted remedies focusing on mental fortitude, ethical living, sacred mantra vibrations, and authentic Vedic Havans.",
+    fullDesc: "Doshas are not curses; they are specific planetary tensions representing unfinished karmas. Pt. Sagar Bhargava prescribes non-fear-mongering, scripture-rooted remedies focusing on mental fortitude, ethical living, sacred mantra vibrations, and authentic Vedic Havans.",
     benefits: [
       "Scientific differentiation between real Dosha vs false commercial claims",
       "Analysis of Kaal Sarp variations (Anant, Kulik, Vasuki, Shankhpal, etc.)",
@@ -320,7 +320,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     popular: true,
     duration: "Detailed Floorplan Audit + 60 Mins Session",
     shortDesc: "Ancient architectural alchemy balancing the 5 elements (Pancha Mahabhuta) to attract health, peace, prosperity, and family harmony.",
-    fullDesc: "Vastu Shastra connects cosmic spatial energies with terrestrial architecture. Pt. Rohit Sharma provides practical non-destructive Vastu solutions using energy mirrors, elemental colors, pyramid yantras, and room-purpose reassignments.",
+    fullDesc: "Vastu Shastra connects cosmic spatial energies with terrestrial architecture. Pt. Sagar Bhargava provides practical non-destructive Vastu solutions using energy mirrors, elemental colors, pyramid yantras, and room-purpose reassignments.",
     benefits: [
       "In-depth analysis of residential flats, bungalows, and industrial plots",
       "Master bedroom, kitchen (Agni corner), and entrance (Dwar) energy corrections",
@@ -605,7 +605,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     service: "Career & Business Astrology",
     rating: 5,
     date: "14 Feb 2026",
-    text: "Pandit Rohit Sharma Ji's prediction regarding my Pune IT venture expansion and investor funding timeline was extraordinarily accurate. His guidance on planetary timings brought noticeable harmony and financial ease. Truly Maharashtra's finest astrologer.",
+    text: "Pandit Sagar Bhargava Ji's prediction regarding my Pune IT venture expansion and investor funding timeline was extraordinarily accurate. His guidance on planetary timings brought noticeable harmony and financial ease. Truly Maharashtra's finest astrologer.",
     verified: true,
     avatarText: "RK"
   },
@@ -617,7 +617,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     service: "Marriage Prediction & Kundli Milan",
     rating: 5,
     date: "28 Jan 2026",
-    text: "We were troubled by a severe Nadi Dosha and Manglik conflict indicated by generic online apps. Astro Love Guru Pt. Rohit Sharma analyzed our D-9 charts and explained the exact cancellation factors with deep scriptural authority. Today we are happily married for 3 years without fear.",
+    text: "We were troubled by a severe Nadi Dosha and Manglik conflict indicated by generic online apps. Astro Love Guru Pt. Sagar Bhargava analyzed our D-9 charts and explained the exact cancellation factors with deep scriptural authority. Today we are happily married for 3 years without fear.",
     verified: true,
     avatarText: "PD"
   },
@@ -629,7 +629,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     service: "Love & Relationship Astrology",
     rating: 5,
     date: "04 Feb 2026",
-    text: "Living in the UK, I was hesitant about long-distance consultation. But Pt. Rohit Sharma Ji's warm demeanor, precise insight into my relationship hurdles, and practical mantra remedies gave me immediate mental peace. Highly recommended for international NRIs.",
+    text: "Living in the UK, I was hesitant about long-distance consultation. But Pt. Sagar Bhargava Ji's warm demeanor, precise insight into my relationship hurdles, and practical mantra remedies gave me immediate mental peace. Highly recommended for international NRIs.",
     verified: true,
     avatarText: "AD"
   },
@@ -641,7 +641,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     service: "Financial & Wealth Astrology",
     rating: 5,
     date: "19 Dec 2025",
-    text: "Stuck with severe business debts and cash flow delays for 18 months, Pt. Rohit Sharma identified an affliction to my 11th lord Mercury. His simple remedies and recommended emerald brought a dramatic revival within 90 days. He is honest and does not sell fear.",
+    text: "Stuck with severe business debts and cash flow delays for 18 months, Pt. Sagar Bhargava identified an affliction to my 11th lord Mercury. His simple remedies and recommended emerald brought a dramatic revival within 90 days. He is honest and does not sell fear.",
     verified: true,
     avatarText: "KP"
   },
@@ -653,7 +653,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     service: "Comprehensive Kundli Reading",
     rating: 5,
     date: "10 Jan 2026",
-    text: "The 60-minute reading was like having a crystal clear roadmap of my entire life. Pt. Rohit Sharma told me about past life events that no stranger could have known. His predictions regarding my overseas relocation came true to the exact week.",
+    text: "The 60-minute reading was like having a crystal clear roadmap of my entire life. Pt. Sagar Bhargava told me about past life events that no stranger could have known. His predictions regarding my overseas relocation came true to the exact week.",
     verified: true,
     avatarText: "VM"
   },
@@ -665,7 +665,7 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
     service: "Birth Chart & Dosha Nivaran",
     rating: 5,
     date: "12 Nov 2025",
-    text: "Many astrologers scared me regarding Kaal Sarp and Sade Sati. Pt. Rohit Sharma calmly dispelled the myths, explained the spiritual purpose of Saturn, and gave simple daily prayers. My anxiety vanished completely.",
+    text: "Many astrologers scared me regarding Kaal Sarp and Sade Sati. Pt. Sagar Bhargava calmly dispelled the myths, explained the spiritual purpose of Saturn, and gave simple daily prayers. My anxiety vanished completely.",
     verified: true,
     avatarText: "MJ"
   }
@@ -680,7 +680,7 @@ export const BLOG_POSTS_DATA: BlogPostItem[] = [
     date: "20 Feb 2026",
     image: blogImageB1,
     excerpt: "Why Mangal Dosha is widely misunderstood by modern matchmaking software, and how high planetary cancellations protect marital bliss.",
-    author: "Pt. Rohit Sharma",
+    author: "Pt. Sagar Bhargava",
     tags: ["Kundli Milan", "Mangal Dosha", "Vedic Marriage", "Remedies"],
     content: `Manglik Dosha (Kuja Dosha) is perhaps the most sensationalized and unnecessarily feared concept in contemporary Vedic astrology. Occurring when Mars (Mangal) resides in the 1st, 4th, 7th, 8th, or 12th houses from the Ascendant, Moon, or Venus, it is often blamed for relationship turbulence.
 
@@ -699,7 +699,7 @@ Before falling prey to expensive rituals, a comprehensive examination of the Nav
     date: "15 Feb 2026",
     image: blogImageB2,
     excerpt: "Discover why Saturn (Shani Dev) is not a punisher but the great cosmic purifier and teacher of endurance and humility.",
-    author: "Pt. Rohit Sharma",
+    author: "Pt. Sagar Bhargava",
     tags: ["Shani", "Sade Sati", "Karma", "Remedies"],
     content: `When Saturn transits through the 12th, 1st, and 2nd houses from your natal Moon sign, this 7.5-year cycle is known as Sade Sati. Popular folklore paints this as a phase of doom, but ancient sages revered Shani Dev as 'Karma Phala Data'—the impartial judge who strips away illusions.
 
@@ -717,7 +717,7 @@ How to thrive during Sade Sati:
     date: "08 Feb 2026",
     image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop",
     excerpt: "Simple, practical directional alignments to clear financial blockages, boost sales conversion, and enhance focus.",
-    author: "Pt. Rohit Sharma",
+    author: "Pt. Sagar Bhargava",
     tags: ["Vastu", "Office", "Prosperity", "Wealth"],
     content: `In the modern era of remote work and entrepreneurial ventures, the micro-energies of your workspace dictate mental clarity and revenue flow.
 
@@ -735,7 +735,7 @@ Key non-demolition alignments:
     date: "01 Feb 2026",
     image: "https://images.unsplash.com/photo-1532968961962-8a0cb3a2d4f5?q=80&w=1000&auto=format&fit=crop",
     excerpt: "How the Mahadasha of favorable Yogakaraka planets creates explosive career jumps and international prestige.",
-    author: "Pt. Rohit Sharma",
+    author: "Pt. Sagar Bhargava",
     tags: ["Career", "Job Switch", "10th House", "Dasha"],
     content: `Career trajectory is governed primarily by the 10th House (Karma Bhava), its lord (Dashamesh), the Amatyakaraka in Jaimini astrology, and the running Vimshottari Dasha sequence.
 
@@ -796,7 +796,7 @@ export const CONSULTATION_PROCESS_STEPS = [
   {
     stepNumber: "03",
     title: "Receive Personalized Guidance",
-    description: "Engage in a 1-on-1 private session with Pt. Rohit Sharma, receive your custom Kundli breakdown, exact timelines, and tailored Vedic remedial path.",
+    description: "Engage in a 1-on-1 private session with Pt. Sagar Bhargava, receive your custom Kundli breakdown, exact timelines, and tailored Vedic remedial path.",
     iconName: "Sparkle"
   }
 ];

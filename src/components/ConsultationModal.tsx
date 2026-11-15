@@ -58,7 +58,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
   const handleWhatsAppDirect = () => {
     const text = encodeURIComponent(
-      `Namaste Pt. Rohit Sharma Ji (Astro_love_guru),\nI want to book a consultation.\nTopic of Guidance: ${guidanceTopic}\nService: ${selectedService.title}\nName: ${clientName || 'Seeker'}\nDOB: ${dob || 'N/A'}\nTime: ${tob || 'N/A'}\nPlace: ${pob || 'N/A'}\nMode: ${consultationMode}\nSlot: ${preferredDate || 'Earliest Available'} at ${preferredSlot}\nQuery/Note: ${notes || 'Guidance required'}`
+      `Namaste Pt. Sagar Bhargava Ji (Astro_love_guru),\nI want to book a consultation.\nTopic of Guidance: ${guidanceTopic}\nService: ${selectedService.title}\nName: ${clientName || 'Seeker'}\nDOB: ${dob || 'N/A'}\nTime: ${tob || 'N/A'}\nPlace: ${pob || 'N/A'}\nMode: ${consultationMode}\nSlot: ${preferredDate || 'Earliest Available'} at ${preferredSlot}\nQuery/Note: ${notes || 'Guidance required'}`
     );
     window.open(`https://wa.me/${ASTROLOGER_PROFILE.whatsapp.replace('+', '')}?text=${text}`, '_blank');
   };
@@ -93,7 +93,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                 Namaste, {clientName || 'Seeker'}!
               </h3>
               <p className="text-xs sm:text-sm text-[#CBBCA0] max-w-md mx-auto">
-                Your consultation request for <strong className="text-[#D4AF37]">{guidanceTopic}</strong> has been received by Astro Love Guru Pt. Rohit Sharma's Kendra (Pune).
+                Your consultation request for <strong className="text-[#D4AF37]">{guidanceTopic}</strong> has been received by Astro Love Guru Pt. Sagar Bhargava's Kendra (Pune).
               </p>
             </div>
 
@@ -152,7 +152,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
             <div className="flex items-center justify-center space-x-2 text-[11px] text-[#A89C86] pt-2">
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
-              <span>Pt. Rohit Sharma's office will connect with you shortly for session verification.</span>
+              <span>Pt. Sagar Bhargava's office will connect with you shortly for session verification.</span>
             </div>
           </div>
         ) : (
@@ -167,7 +167,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                 <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#F3EFE6]">
                   Book Private Consultation
                 </h3>
-                <p className="text-xs text-[#D4AF37]">Astro_love_guru • Pt. Rohit Sharma (Pune) • +91 9352479593</p>
+                <p className="text-xs text-[#D4AF37]">Astro_love_guru • Pt. Sagar Bhargava (Pune) • +91 9352479593</p>
               </div>
             </div>
 
@@ -368,7 +368,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               {/* Specific Questions */}
               <div>
                 <label className="block text-xs font-semibold text-[#E5D7B7] mb-1">
-                  Specific Questions / Details for Pt. Rohit Sharma (Optional)
+                  Specific Questions / Details for Pt. Sagar Bhargava (Optional)
                 </label>
                 <textarea
                   rows={2}

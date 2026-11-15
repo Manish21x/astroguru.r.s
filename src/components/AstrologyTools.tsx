@@ -372,7 +372,7 @@ export const AstrologyTools: React.FC<AstrologyToolsProps> = ({ onOpenWhatsApp }
                 Select Your Rashi / Zodiac Sign
               </h3>
               <p className="text-xs sm:text-sm text-[#C4B79E]">
-                Today's celestial transits decoded for all 12 Rashis by Pt. Rohit Sharma Ji.
+                Today's celestial transits decoded for all 12 Rashis by Pt. Sagar Bhargava Ji.
               </p>
             </div>
 

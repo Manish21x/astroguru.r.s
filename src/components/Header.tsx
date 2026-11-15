@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenWhatsApp }) => {
               rel="noopener noreferrer"
               id="header-top-instagram-link"
               className="flex items-center space-x-1.5 text-[#F3EFE6] hover:text-[#FF6B9D] transition-colors"
-              title="Follow Pt. Rohit Sharma on Instagram"
+              title="Follow Pt. Sagar Bhargava on Instagram"
             >
               <Instagram className="w-3.5 h-3.5 text-[#FF6B9D]" />
               <span className="hidden md:inline">{ASTROLOGER_PROFILE.instagramHandle}</span>
