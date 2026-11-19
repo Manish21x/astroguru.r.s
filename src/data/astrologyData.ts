@@ -90,8 +90,8 @@ export const ASTROLOGER_PROFILE = {
   rawPhone: "9352479593",
   whatsapp: "+919352479593",
   email: "consultation@astroloveguru.com",
-  instagram: "https://www.instagram.com/astro_sagar_bhargava_jiii",
-  instagramHandle: "@astro_sagar_bhargava_jiii",
+  instagram: "https://www.instagram.com/lostlove_vedichope?jplx=MXNyM3pnZGZicGsyZg%3D%3D&utm_source=qr",
+  instagramHandle: "@lostlove_vedichope",
   officeAddress: "Astro_love_guru Sansthan, Koregaon Park / FC Road, Pune, Maharashtra 411001",
   shortBio: "Astro Love Guru Pt. Sagar Bhargava is one of India's most trusted and felicitated Vedic Astrologers, recognized for transformative guidance in Love, Relationship, Career, Business, Finance, Education, Family, and Health issues. Based in Pune, Maharashtra, Pt. Sagar Bhargava seamlessly integrates authentic Parashari principles, KP astrology, and scientifically aligned remedial measures to bring clarity, peace, and prosperity to thousands of seekers worldwide.",
   highlights: [
